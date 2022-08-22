@@ -10,8 +10,8 @@ struct Args {
     #[clap(short, long, value_parser)]
     path_to_file: String,
 
-    #[clap(short = 'b', long, value_parser = 1..10, default_value_t = 4)]
-    first_bits: i64,
+    #[clap(short = 'b', long, value_parser = 1..=10)]
+    first_bits: Option<i64>,
 
     #[clap(short = 'd', long, value_enum)]
     for_digest: Option<HashingDigest>,
@@ -58,7 +58,7 @@ fn main() -> Result<(), Box<dyn Error>> {
     let passwords = read_from_csv(&args.path_to_file)?;
 
     if let Some(digest) = args.for_digest {
-        let hash_anonymity = HashAnonymity::for_first_bits(args.first_bits as usize);
+        let hash_anonymity = HashAnonymity::for_first_bits(args.first_bits.unwrap() as usize);
 
         let pswd_hash_records =
             digest.compute_on(&hash_anonymity, passwords.iter().map(|s| s.as_str()));
@@ -78,7 +78,7 @@ fn main() -> Result<(), Box<dyn Error>> {
             k_anonymity_achieved.to_string().bright_green().bold()
         );
     } else {
-        let hash_anonymity = HashAnonymity::for_first_bits(args.first_bits as usize);
+        let hash_anonymity = HashAnonymity::for_first_bits(args.first_bits.unwrap() as usize);
 
         let digest_performances = compare_and_find_best_digest(hash_anonymity, passwords);
 
