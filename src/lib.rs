@@ -2,6 +2,7 @@ use blake2::{Blake2b512, Blake2s256};
 use fsb::{Fsb160, Fsb256, Fsb512};
 use hex::ToHex;
 use md2::Md2;
+use serde::Serialize;
 use sha1::Sha1;
 use sha2::{Digest, Sha256, Sha512};
 use std::collections::HashMap;
@@ -14,7 +15,7 @@ pub fn hash_password<D: Digest>(password: &str) -> String {
     hasher.finalize().encode_hex()
 }
 
-#[derive(clap::ValueEnum, Clone, Copy, Debug)]
+#[derive(clap::ValueEnum, Clone, Copy, Debug, Serialize)]
 pub enum HashingDigest {
     SHA1,
     SHA256,
@@ -37,7 +38,7 @@ impl HashingDigest {
         &self,
         hash_anonymity: &HashAnonymity,
         passwords: impl Iterator<Item = &'a str>,
-    ) -> HashMap<String, u32> {
+    ) -> HashMap<String, usize> {
         match self {
             SHA1 => hash_anonymity.compute_for_digest::<Sha1, _>(passwords),
             SHA256 => hash_anonymity.compute_for_digest::<Sha256, _>(passwords),
@@ -65,8 +66,8 @@ impl HashAnonymity {
     pub fn compute_for_digest<'a, D: Digest, Itr: Iterator<Item = &'a str>>(
         &self,
         passwords: Itr,
-    ) -> HashMap<String, u32> {
-        let mut pswd_hash_records = HashMap::<String, u32>::new();
+    ) -> HashMap<String, usize> {
+        let mut pswd_hash_records = HashMap::<String, usize>::new();
 
         passwords.for_each(|password| {
             let hash = hash_password::<D>(&password);
