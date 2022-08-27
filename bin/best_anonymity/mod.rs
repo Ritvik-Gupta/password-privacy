@@ -168,7 +168,7 @@ fn main() -> Result<(), Box<dyn Error>> {
                 })
                 .collect();
 
-            write_to_csv("./datasets/anonymities.csv", records)?;
+            write_to_csv("./visualizations/anonymities.csv", records)?;
         }
     }
 

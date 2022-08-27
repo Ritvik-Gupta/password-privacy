@@ -2,6 +2,8 @@ first_bits,digest,k_anonymity_achieved,anonymity_imapct
 1,SHA1,374,0
 1,SHA256,390,0
 1,SHA512,402,0
+1,SHA3_256,382,0
+1,SHA3_512,383,0
 1,BLAKE2S256,400,0
 1,BLAKE2B512,397,0
 1,FSB160,395,0
@@ -12,6 +14,8 @@ first_bits,digest,k_anonymity_achieved,anonymity_imapct
 2,SHA1,12,12
 2,SHA256,14,14
 2,SHA512,14,14
+2,SHA3_256,13,13
+2,SHA3_512,16,16
 2,BLAKE2S256,14,14
 2,BLAKE2B512,15,15
 2,FSB160,14,14
@@ -22,6 +26,8 @@ first_bits,digest,k_anonymity_achieved,anonymity_imapct
 3,SHA1,1,2
 3,SHA256,1,2
 3,SHA512,1,2
+3,SHA3_256,1,2
+3,SHA3_512,1,2
 3,BLAKE2S256,1,2
 3,BLAKE2B512,1,2
 3,FSB160,1,2
@@ -32,6 +38,8 @@ first_bits,digest,k_anonymity_achieved,anonymity_imapct
 4,SHA1,1,3
 4,SHA256,1,3
 4,SHA512,1,3
+4,SHA3_256,1,3
+4,SHA3_512,1,3
 4,BLAKE2S256,1,3
 4,BLAKE2B512,1,3
 4,FSB160,1,3
@@ -42,6 +50,8 @@ first_bits,digest,k_anonymity_achieved,anonymity_imapct
 5,SHA1,1,4
 5,SHA256,1,4
 5,SHA512,1,4
+5,SHA3_256,1,4
+5,SHA3_512,1,4
 5,BLAKE2S256,1,4
 5,BLAKE2B512,1,4
 5,FSB160,1,4
@@ -52,6 +62,8 @@ first_bits,digest,k_anonymity_achieved,anonymity_imapct
 6,SHA1,1,5
 6,SHA256,1,5
 6,SHA512,1,5
+6,SHA3_256,1,5
+6,SHA3_512,1,5
 6,BLAKE2S256,1,5
 6,BLAKE2B512,1,5
 6,FSB160,1,5
@@ -62,6 +74,8 @@ first_bits,digest,k_anonymity_achieved,anonymity_imapct
 7,SHA1,1,6
 7,SHA256,1,6
 7,SHA512,1,6
+7,SHA3_256,1,6
+7,SHA3_512,1,6
 7,BLAKE2S256,1,6
 7,BLAKE2B512,1,6
 7,FSB160,1,6
@@ -72,6 +86,8 @@ first_bits,digest,k_anonymity_achieved,anonymity_imapct
 8,SHA1,1,7
 8,SHA256,1,7
 8,SHA512,1,7
+8,SHA3_256,1,7
+8,SHA3_512,1,7
 8,BLAKE2S256,1,7
 8,BLAKE2B512,1,7
 8,FSB160,1,7
@@ -82,6 +98,8 @@ first_bits,digest,k_anonymity_achieved,anonymity_imapct
 9,SHA1,1,8
 9,SHA256,1,8
 9,SHA512,1,8
+9,SHA3_256,1,8
+9,SHA3_512,1,8
 9,BLAKE2S256,1,8
 9,BLAKE2B512,1,8
 9,FSB160,1,8
@@ -92,6 +110,8 @@ first_bits,digest,k_anonymity_achieved,anonymity_imapct
 10,SHA1,1,9
 10,SHA256,1,9
 10,SHA512,1,9
+10,SHA3_256,1,9
+10,SHA3_512,1,9
 10,BLAKE2S256,1,9
 10,BLAKE2B512,1,9
 10,FSB160,1,9

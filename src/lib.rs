@@ -5,6 +5,7 @@ use md2::Md2;
 use serde::Serialize;
 use sha1::Sha1;
 use sha2::{Digest, Sha256, Sha512};
+use sha3::{Sha3_256, Sha3_512};
 use std::collections::HashMap;
 use whirlpool::Whirlpool;
 use HashingDigest::*;
@@ -20,6 +21,8 @@ pub enum HashingDigest {
     SHA1,
     SHA256,
     SHA512,
+    SHA3_256,
+    SHA3_512,
     BLAKE2S256,
     BLAKE2B512,
     FSB160,
@@ -30,7 +33,8 @@ pub enum HashingDigest {
 }
 
 pub static DIGESTS: &[HashingDigest] = &[
-    SHA1, SHA256, SHA512, BLAKE2S256, BLAKE2B512, FSB160, FSB256, FSB512, MD2, WHIRLPOOL,
+    SHA1, SHA256, SHA512, SHA3_256, SHA3_512, BLAKE2S256, BLAKE2B512, FSB160, FSB256, FSB512, MD2,
+    WHIRLPOOL,
 ];
 
 impl HashingDigest {
@@ -40,16 +44,18 @@ impl HashingDigest {
         passwords: impl Iterator<Item = &'a str>,
     ) -> HashMap<String, usize> {
         match self {
-            SHA1 => hash_anonymity.compute_for_digest::<Sha1, _>(passwords),
-            SHA256 => hash_anonymity.compute_for_digest::<Sha256, _>(passwords),
-            SHA512 => hash_anonymity.compute_for_digest::<Sha512, _>(passwords),
-            BLAKE2S256 => hash_anonymity.compute_for_digest::<Blake2s256, _>(passwords),
-            BLAKE2B512 => hash_anonymity.compute_for_digest::<Blake2b512, _>(passwords),
-            FSB160 => hash_anonymity.compute_for_digest::<Fsb160, _>(passwords),
-            FSB256 => hash_anonymity.compute_for_digest::<Fsb256, _>(passwords),
-            FSB512 => hash_anonymity.compute_for_digest::<Fsb512, _>(passwords),
-            MD2 => hash_anonymity.compute_for_digest::<Md2, _>(passwords),
-            WHIRLPOOL => hash_anonymity.compute_for_digest::<Whirlpool, _>(passwords),
+            SHA1 => hash_anonymity.compute_for::<Sha1, _>(passwords),
+            SHA256 => hash_anonymity.compute_for::<Sha256, _>(passwords),
+            SHA512 => hash_anonymity.compute_for::<Sha512, _>(passwords),
+            SHA3_256 => hash_anonymity.compute_for::<Sha3_256, _>(passwords),
+            SHA3_512 => hash_anonymity.compute_for::<Sha3_512, _>(passwords),
+            BLAKE2S256 => hash_anonymity.compute_for::<Blake2s256, _>(passwords),
+            BLAKE2B512 => hash_anonymity.compute_for::<Blake2b512, _>(passwords),
+            FSB160 => hash_anonymity.compute_for::<Fsb160, _>(passwords),
+            FSB256 => hash_anonymity.compute_for::<Fsb256, _>(passwords),
+            FSB512 => hash_anonymity.compute_for::<Fsb512, _>(passwords),
+            MD2 => hash_anonymity.compute_for::<Md2, _>(passwords),
+            WHIRLPOOL => hash_anonymity.compute_for::<Whirlpool, _>(passwords),
         }
     }
 }
@@ -63,7 +69,7 @@ impl HashAnonymity {
         Self { first_bits }
     }
 
-    pub fn compute_for_digest<'a, D: Digest, Itr: Iterator<Item = &'a str>>(
+    pub fn compute_for<'a, D: Digest, Itr: Iterator<Item = &'a str>>(
         &self,
         passwords: Itr,
     ) -> HashMap<String, usize> {

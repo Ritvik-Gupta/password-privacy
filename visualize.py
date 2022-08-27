@@ -1,7 +1,7 @@
 import pandas as pd
 import plotly.express as px
 
-df = pd.read_csv("./datasets/anonymities.csv")
+df = pd.read_csv("./visualizations/anonymities.csv")
 
 fig1 = px.line(
     df,
@@ -21,6 +21,6 @@ fig2 = px.line(
     color="digest",
     markers=True,
     log_y=True,
-    title="Anonymity Impace for Digests",
+    title="Anonymity Heuristic Impact for Digests",
 )
 fig2.show()
